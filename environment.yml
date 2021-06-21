@@ -1,0 +1,10 @@
+name: bot-environment 
+channels:
+  - conda-forge
+dependencies:
+  - python=3.8.5
+  - python-dotenv
+  - pip
+  - pip:
+      - discord
+      - supervisor
