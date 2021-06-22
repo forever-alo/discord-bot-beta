@@ -40,10 +40,10 @@ def welcomer(member):
     perks = f'you can message in hidden chats with {whom}'
     goal = 'we can make you "a regular" on Forever Alo\''
 
-    return f'{hello}! {ask}.\n\nIf {tasks}, then {goal}. After that, {perks}.';
+    return f'{hello}! {ask}.\n\nIf {tasks}, then {goal}. After that, {perks}.'
 
 @client.event
 async def on_member_join(member):
-    await member.send(welcomer(member));
+    await member.send(welcomer(member))
 
 client.run(TOKEN)
