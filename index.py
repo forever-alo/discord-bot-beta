@@ -45,7 +45,5 @@ def welcomer(member):
 @client.event
 async def on_member_join(member):
     await member.send(welcomer(member));
-    channel = client.get_channel(channel_id)
-    await channel.send(embed=embed)
 
 client.run(TOKEN)
