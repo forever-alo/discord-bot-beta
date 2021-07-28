@@ -23,27 +23,29 @@ async def on_ready():
     )
 
 def welcomer(member):
-    tagline = 'an unoffical chat page for friends who use Alohub'
-    hello = f'Hi, it\'s Forever Alo\', {tagline}'
 
-    organizers = 'John or Sera'
     tag = member.discriminator
-    name_type = 'your first, last name, and contact info'
-    friend_condition = f'who already knows {name_type}'
-    ask = f'Please text the code #{tag} to a friend ({organizers}) {friend_condition}'
+    welcome = "Welcome to Forever Alo',"
+    tagline = "an unofficial discord server for Alohub users!"
+    guidelines = "Please first read and agree to the community guidelines!"
+    organizers = "John or Sera"
+    NO_GUIDELINES = True
+    if NO_GUIDELINES:
+        guidelines = "TODO"
 
-    task_1 = 'been to 2+ public events'
-    task_2 = 'agreed to our community guidelines'
-    tasks = f'you\'ve {task_1} and {task_2}'
+    output = f"""{welcome} {tagline} {guidelines} Next, for verification purposes please text code #{tag} to {organizers} and provide your full name and contact info.
 
-    whom = 'other regulars with confirmed full names'
-    perks = f'you can message in hidden chats with {whom}'
-    goal = 'we can make you "a regular" on Forever Alo\''
-
-    return f'{hello}! {ask}.\n\nIf {tasks}, then {goal}. After that, {perks}.'
+If you have been to 2 or more Alohub events then please let one of the moderators know! This way you can be assigned a regular tag and have access to all the available chats :grinning: Anyway, welcome once again and Forever Alo'!"""
+    return output.replace(" TODO ", " ")
 
 @client.event
 async def on_member_join(member):
     await member.send(welcomer(member))
+
+@client.event
+async def on_message(message):
+    if isinstance(message.channel, discord.DMChannel):
+        if message.content.startswith('help'):
+            await message.channel.send(welcomer(message.author))
 
 client.run(TOKEN)
